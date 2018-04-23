@@ -6,16 +6,8 @@ import Nave from '../components/Navi/Navi'
 Vue.use(Router)
 
 export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
-    },
-    {
-        path: '/navi',
-        name: 'Navi',
-        component: Nave
-      }
-  ]
+    routes: [
+        {path: '/', name: 'HelloWorld', component: HelloWorld},
+        {path: '/navi',name: 'Navi', component: Nave}
+    ]
 })

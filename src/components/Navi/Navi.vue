@@ -12,6 +12,7 @@
                         :on-icon-click="handleIconClick">
                 </el-input>
             </span>
+          <span>      <el-button type="text" @click="testAjax">测试ajax</el-button></span>
             <span class="demonstration" style="float:right;padding-top:10px;margin-right:1%">
                 <el-dropdown trigger="click">
                   <span class="el-dropdown-link" style="color:white">
@@ -45,11 +46,11 @@
                         </div> -->
                          <el-main>
                          <el-table :data="tableData">
-                            <el-table-column prop="date" label="日期" width="140">
+                            <el-table-column prop="createDate" label="日期" width="140">
                             </el-table-column>
                             <el-table-column prop="name" label="姓名" width="120">
                             </el-table-column>
-                            <el-table-column prop="address" label="地址">
+                            <el-table-column prop="email" label="地址">
                             </el-table-column>
                         </el-table>
                         </el-main>
@@ -63,9 +64,9 @@
 export default {
   data() {
     const item = {
-      date: "2016-05-02",
+      createDate: "2016-05-02",
       name: "王小虎",
-      address: "上海市普陀区金沙江路 1518 弄"
+      email: "上海市普陀区金沙江路 1518 弄"
     };
     return {
       searchCriteria: "",
@@ -77,6 +78,39 @@ export default {
   methods: {
     handleIconClick(ev) {
       console.log(ev);
+    },
+
+    testAjax() {
+        // this.$ajax({
+        //   method: "post",
+        //   url: "http://127.0.0.1:8080/test/test/loadPermission",
+        //   data: {
+        //     name: "wise",
+        //     info: "wrong"
+        //   }
+        // });
+
+      //测试登入
+    //   this.$ajax
+    //     .get("http://localhost:8080/login?username=ims&password=ims")
+    //     .then(function(response) {
+    //       console.log(response);
+    //     })
+    //     .catch(function(response) {
+    //       console.log(response);
+    //     });
+
+      this.$ajax.get("http://localhost:8080/test/userInfo", {
+          username: "Fred",
+          name: "Flintstone"
+        })
+        .then(function(response) {
+            this.tableData = response;
+          console.log(response);
+        })
+        .catch(function(response) {
+          console.log(response);
+        });
     }
   }
 };
